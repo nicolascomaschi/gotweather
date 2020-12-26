@@ -1,0 +1,63 @@
+/** Global **/
+html, body, div, span, applet, object, iframe, h1, h3, .side-right #countdown span,
+.side-right #countdown li.seperator, h2, h3, h4, h5, h6, p, .address-detail a, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+strong {
+  font-weight: bold; }
+
+body {
+  color: #000;
+  background: #000;
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  font-style: normal;
+  line-height: 1.5;
+  overflow: hidden; }
+
+a:hover, a:active {
+  outline: 0; }
+
+button:focus {
+  border: none;
+  outline: 0; }
+
+ul {
+  list-style: none; }
+
+a {
+  color: #000;
+  text-decoration: none; }
+
+a:hover {
+  color: #000;
+  text-decoration: none; }
+
+a:focus {
+  color: #000;
+  text-decoration: none;
+  outline: none; }
+
+h1, h3, .side-right #countdown span,
+.side-right #countdown li.seperator {
+  color: #fff;
+  font-size: 80px;
+  letter-spacing: -1px;
+  font-weight: 600; }
+
+h3 {
+  font-size: 55px;
+  font-weight: 600;
+  text-transform: capitalize;
+  letter-spacing: -1px; }
+
+p, .address-detail a {
+  font-size: 14px;
+  font-weight: 500;
+  color: #fff;
+  line-height: 25px; }
