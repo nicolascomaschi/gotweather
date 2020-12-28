@@ -116,7 +116,6 @@ export class HomeComponent implements OnInit {
           }); 
         })
     }
-    console.log(this.weather);
     this.city = '';
     this.countryCode = '';
   }

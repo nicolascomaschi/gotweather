@@ -1,4 +1,78 @@
-/* The hero image
+/* * {
+  border: 1px solid black;
+} */
+
+.image-right{
+  background-size: cover !important; 
+  background-position: center !important;
+}
+
+.center{
+  position: absolute;
+  height: auto;
+  top: 50%;
+  left: 80%;
+  transform: translate(-80%, -50%);
+}
+
+header {
+  padding: 3em 3em 1.75em 2.25em;
+}
+
+.title {
+  font-weight: bold;
+}
+
+.subtitle {
+  color: #aaa;
+}
+
+.input-field {
+  text-align: right;
+}
+
+@media only screen and (max-width: 1920px) {
+  .center {
+    width: 60%;
+  }
+  
+  header {
+    padding: 3em 0 1.75em 4.5em;
+  }
+}
+
+@media only screen and (max-width: 1366px) {
+}
+@media only screen and (max-width: 1082px) {
+}
+@media only screen and (max-width: 973px) {
+}
+@media only screen and (max-width: 870px) {
+  .title, .subtitle {
+    font-size: medium;
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 766px) {
+  .side-left{
+    height: 25% !important;
+  }
+  .side-right{
+    height: 75% !important;
+  }
+}
+@media only screen and (max-width: 615px) {
+
+}
+@media only screen and (max-width: 438px) {
+
+}
+@media only screen and (max-width: 414px) {
+
+} 
+
+
+  /* The hero image
 .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
 
@@ -17,7 +91,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   color: white;
-} */
+} 
 
 @-webkit-keyframes border-widthc {
   0% {
@@ -84,7 +158,6 @@
   100% {
     transform: scale(1); } }
 
-/** Main **/
 
 .side-left {
   background: #000;
@@ -384,7 +457,6 @@ body {
 	width: 100%;
 }
 
-/* Intro sides */
 .side {
 	position: fixed!important;
 	top: 0;
@@ -424,7 +496,6 @@ body {
 	color: #ddd;
 }
 
-/* All transitions */
 .side,
 .page {
 	-webkit-transition: -webkit-transform 0.5s ease-in-out;
@@ -519,13 +590,11 @@ body {
   font-weight: 600;
   text-transform: uppercase; }
 .form-control:-moz-placeholder {
-  /* Firefox 18- */
   color: #fff;
   font-size: 18px;
   font-weight: 600;
   text-transform: uppercase; }
 .form-control::-moz-placeholder {
-  /* Firefox 19+ */
   color: #fff;
   font-size: 18px;
   font-weight: 600;
@@ -548,7 +617,7 @@ body {
     border-radius: 0;
     background: #f0f0f0;
     color: #aaa;
-    -webkit-appearance: none; /* for box shadows to show on iOS */
+    -webkit-appearance: none;
   }
   
   .input__field:focus {
@@ -568,8 +637,6 @@ body {
     user-select: none;
   }
   
-  
-  /* Hoshi */
   .input--hoshi {
     overflow: hidden;
   }
@@ -674,8 +741,7 @@ body {
     }
   }
   
-/* Media queries */
-/*
+
 @media only screen and (max-width: 1710px) {
   h1, h3, .side-right #countdown span,
   .side-right #countdown li.seperator {
