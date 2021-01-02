@@ -1,6 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ViewChild, HostListener, OnInit } from '@angular/core';
+import { BehaviorSubject, Observable } from 'rxjs';
+import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { WeatherService } from '../services/weather.service';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
+import { faTimes } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-home',
@@ -9,13 +13,29 @@ import { WeatherService } from '../services/weather.service';
 })
 export class HomeComponent implements OnInit {
 
+  faTimes = faTimes;
+  faBars = faBars;
   public city: string; 
   public countryCode: string;
   public weather: any;
   public img: string;
   public location: string;
   public errors: any;
-  constructor( private api: WeatherService, private _snackBar: MatSnackBar ) { 
+  public showToggle: string;
+  public mode: string;
+  public openSidenav: boolean;
+  private screenWidth$ = new BehaviorSubject<number>
+  (window.innerWidth);
+  @ViewChild('sidenav')
+  matSidenav!: MatSidenav;
+
+  constructor( 
+    private api: WeatherService, 
+    private _snackBar: MatSnackBar ) { 
+    
+    this.mode = '';
+    this.showToggle = '';
+    this.openSidenav = true;
     this.city = '';
     this.countryCode = '';
     this.img = 'assets/images/home.jpeg';
@@ -23,16 +43,45 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getScreenWidth().subscribe(width => {
+      if (width < 640) {
+       this.showToggle = 'show';
+       this.mode = 'over';
+       this.openSidenav = false;
+     }
+     else if (width > 640) {
+       this.showToggle = 'hide';
+       this.mode = 'side';
+       this.openSidenav = true;
+     }
+   });
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.screenWidth$.next(event.target.innerWidth);
+  }
+  getScreenWidth(): Observable<number> {
+    return this.screenWidth$.asObservable();
   }
 
   send(){
     this.city.replace(/ /g,"+");
     if(this.city == '' && this.countryCode == ''){
-      this._snackBar.open("Enter valid values", "Error", {
+      this._snackBar.open("Enter valid values", "Accept", {
         duration: 2000,
+        panelClass: 'snackBar',
       }); 
     }
     else {
+      this.getScreenWidth().subscribe(width => {
+        if (width < 640) {
+         this.showToggle = 'hidden';
+         this.mode = 'over';
+         this.openSidenav = false;
+         console.log("true");
+       }
+      });
       this.api.getWeather(this.city, this.countryCode).subscribe( 
         response => { 
         this.weather = response;
@@ -60,19 +109,21 @@ export class HomeComponent implements OnInit {
         (this.weather.weather[0].description === "shower rain" || 
         this.weather.weather[0].description === "rain" ||
         this.weather.weather[0].description === "thunderstorm" ||
-        this.weather.weather[0].description === "mist")){
+        this.weather.weather[0].description === "mist" ||
+        this.weather.weather[0].description === "light rain")){
           this.img = 'assets/images/stmorsend.jpeg'
           this.location = 'Storms End';
         }
         else if ((this.weather.main.temp >= 15 && this.weather.main.temp < 20) && 
-        (this.weather.weather[0].description === "rain" ||
+        (this.weather.weather[0].description === "shower rain" ||
+        this.weather.weather[0].description === "rain" ||
         this.weather.weather[0].description === "thunderstorm")){
           this.img = 'assets/images/pike.jpeg'
           this.location = 'Pyke';
         }
         else if ((this.weather.main.temp >= 15 && this.weather.main.temp < 20) && 
-        (this.weather.weather[0].description === "shower rain" ||
-        this.weather.weather[0].description === "mist")){
+        (this.weather.weather[0].description === "mist" ||
+        this.weather.weather[0].description === "light rain")){
           this.img = 'assets/images/braavos.jpeg'
           this.location = 'Braavos';
         }
@@ -96,7 +147,8 @@ export class HomeComponent implements OnInit {
         (this.weather.weather[0].description === "shower rain" ||
         this.weather.weather[0].description === "mist" ||
         this.weather.weather[0].description === "rain" ||
-        this.weather.weather[0].description === "thunderstorm")){
+        this.weather.weather[0].description === "thunderstorm" ||
+        this.weather.weather[0].description === "light rain")){
           this.img = 'assets/images/kingslanding.jpeg'
           this.location = 'Kings Landing';
         }
@@ -111,9 +163,8 @@ export class HomeComponent implements OnInit {
         },
         error => {
           this.errors = error;
-          this._snackBar.open('Sorry but I don\'t know that city, it\'s probably like Ulthos', 'Error', {
-            duration: 5000,
-          }); 
+          this.img = 'assets/images/ulthos.png';
+          this.weather = null;
         })
     }
     this.city = '';

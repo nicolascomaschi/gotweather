@@ -1,139 +1,126 @@
-<div class="container-fluid p-0 m-0">
-    <div class="row">
-        <div class="side-left col-md-4 order-md-2 text-right p-5">
-            <header>
-                <h3 class="title">GOT Weather</h3>
-                <p class="subtitle">Just a simple weather search, powered by Game of Thrones</p>
-            </header>
-            <div class="center">
-                <mat-form-field class="input-field d-block">
-                    <mat-label>City</mat-label>
-                    <input matInput class="form-control" required [(ngModel)]="city" name="city">
-                </mat-form-field>
-                <mat-form-field class="input-field d-block">
-                    <mat-label>Country Code</mat-label>
-                    <input matInput class="form-control" required [(ngModel)]="countryCode" name="countryCode">
-                </mat-form-field>
-                <button mat-raised-button color="primary" (click)="send()" class="btn btn-default btn-block">Search</button>
-            </div>
-        </div>
-        <div class="side-right col-md-8 order-md-1 h-100 d-inline-block p-0" style="position: relative;">
-            <div class="image-right" style="background: transparent url({{img}}); ">
-            </div>
-            <div *ngIf="weather" class="center align-center text-left">
-                <p> Wow.
-                    <span>
-                        <h3>{{ weather.main.temp }}° C</h3>
-                    </span>
-                </p>
-                <p> It's like </p>
-                <div>
-                    <span>{{location}}</span>
-                </div>
-                <p> out there </p>
-                <p> {{ weather.weather[0].description }} </p>
-                <p>Humidity: {{ weather.main.humidity }}. Max: {{ weather.main.temp_max }}.
-                    Min: {{ weather.main.temp_min }}</p>
-            </div>
-        </div>
-    </div>
-  </div>
-<!-- <div class="p-0">
-    <div id="splitlayout" class="splitlayout reset-layout">
-        <div class="intro">
-            <div class="side side-left">
-                <div class="col-lg-8 col-md-9 col-sm-9 col-xs-9 align-center content-wrap">
-                    <div class="main">
-                        <section id="home" class="section active">
-                            <div class="align-center text-left">
-                                <div class="notify-wrap">
-                                    <h3 class="wellcome-text" data-animation="fadeInLeft" data-animation-delay="900"
-                                        data-out-animation="fadeOutLeft" data-out-animation-delay="100"
-                                        data-ng-bind="notify || 'hello..'">GOT Weather</h3>
-                                    <span class="small-hr animated fadeInLeft" data-animation="fadeInLeft"
-                                        data-out-animation="fadeOutLeft" data-out-animation-delay="200"></span>
-                                    <form id="notifyMe" class="contact-form">
-                                        <div class="input-wrap" data-animation="fadeInLeft" data-animation-delay="100"
-                                            data-out-animation="fadeOutLeft" data-out-animation-delay="900">
-                                            <input required [(ngModel)]="city"
-                                                class="col-lg-10  align-center form-control input input__field input__field--hoshi notify-input-box"
-                                                name="city" placeholder="City">
-                                            <label
-                                                class="input__label input__label--hoshi input__label--hoshi-color-1"></label>
-                                        </div>
-                                        <div class="input-wrap" data-animation="fadeInLeft" data-animation-delay="100"
-                                            data-out-animation="fadeOutLeft" data-out-animation-delay="900">
-                                            <input required [(ngModel)]="countryCode"
-                                                class="col-lg-10  align-center form-control input input__field input__field--hoshi notify-input-box"
-                                                name="countryCode" placeholder="Country Code">
-                                            <label
-                                                class="input__label input__label--hoshi input__label--hoshi-color-1"></label>
-                                        </div>
-                                        <button (click)="send()" type="submit" data-hover="Send"
-                                            class="btn btn-default progress-button btn-submit "
-                                            data-animation="fadeInUp" data-animation-delay="900"
-                                            data-out-animation="fadeOutUp" data-out-animation-delay="1300">
-                                            <span>
-                                                <span class="arrow-wrap">
-                                                    <span class="arrow"></span>
-                                                </span>
-                                            </span>
-                                        </button>
-                                    </form>
-                                </div>
-                            </div>
-                        </section>
-                        <div class="copyright">
-                            <ul class="social-icons">
-                                <li>
-                                    <a href="" class="social-icon">
-                                        <i class="fa fa-facebook"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="social-icon">
-                                        <i class="fa fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="social-icon">
-                                        <i class="fa fa-linkedin"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="" class="social-icon">
-                                        <i class="fa fa-behance"></i>
-                                    </a>
-                                </li>
-                            </ul>
+<div class="container-fluid p-0">
+        <mat-sidenav-container style="display:unset; position: unset;">
+            <mat-sidenav [opened]="openSidenav" #sidenav position="end" mode="side">
+                <div class="side-left text-right" >
+                    <div class="" style="height: 80%;">
+                        <button style="right: 80%;" mat-icon-button (click)="sidenav.toggle()" class ='d-md-none d-sm-block' [ngClass]="showToggle">
+                            <fa-icon [icon]="faTimes"></fa-icon>
+                        </button>
+                        <header>
+                            <h3 class="title">GOT Weather</h3>
+                            <p class="subtitle">Just a simple weather search, powered by Game of Thrones</p>
+                        </header>
+                        <div class="center">
+                            <mat-form-field class="input-field d-block">
+                                <mat-label>City</mat-label>
+                                <input matInput class="form-control" required [(ngModel)]="city" name="city">
+                            </mat-form-field>
+                            <mat-form-field class="input-field d-block">
+                                <mat-label>Country Code</mat-label>
+                                <input matInput class="form-control" required [(ngModel)]="countryCode" name="countryCode">
+                            </mat-form-field>
+                            <button mat-raised-button color="primary" (click)="send()" class="btn btn-default btn-block">Search</button>
                         </div>
                     </div>
+                    <div style="height: 20%;">
+                        <footer class="" style="display: inline-flex; padding-right: 0;">
+                            <ul class="list-group list-group-horizontal text-right">
+                                <li class="list-group-item"><a href="https://twitter.com/CocoonProfesor">Twitter</a></li>
+                                <li class="list-group-item"><a href="https://github.com/nicolascomaschi">GitHub</a></li>
+                                <li class="list-group-item"><a href="https://www.instagram.com/nicolas_comaschi">Instagram</a></li>
+                            </ul>
+                        </footer>
+                    </div>
                 </div>
-            </div>
-            <div class="side side-right">
-                <div class="background-kenburn" 
-                style="background: transparent url({{img}}); background-size: cover;">
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div class="side-right p-0" >
+                    <div class="image-right" style="background: transparent url({{img}}); ">
+                        <button style="z-index: 1; color: white;" mat-icon-button (click)="sidenav.toggle()" class ='d-md-none d-sm-block' [ngClass]="showToggle">
+                            <fa-icon [icon]="faBars"></fa-icon>
+                        </button>
+                    </div>
+                    <div *ngIf="weather" style="width: 100%; height: 100%; color: white;" class="center">
+                        <div class="container">
+                            <div class="row">
+                              <div class="col-12 pt-5" style="height: 20%;">
+                                <p style="font-size: 1em;"> Wow. </p>
+                                <h3 style="font-size: 2em;">{{ weather.main.temp }}° C</h3>
+                              </div>
+                              <div class="col-12 pt-5 text-center" style="height: 50%;">
+                                <p style="font-size: 2em;"> It's like </p>
+                                <span style="font-size: 5em; font-family: 'Lobster', cursive;">{{location}}</span>
+                                <p style="font-size: 2em;"> out there </p>
+                              </div>
+                              <div class="col-12 pt-5 text-right" style="height: 30%;">
+                                <p style="font-size: 2em;"> {{ weather.weather[0].description }} </p>
+                                <p style="font-size: 1em;">Humidity: {{ weather.main.humidity }}. Max: {{ weather.main.temp_max }}.
+                                    Min: {{ weather.main.temp_min }}</p>
+                              </div>
+                            </div>
+                          </div>
+                    </div>
                 </div>
-                <div class="counter-content">
-                    <div *ngIf="weather" class="col-lg-8 col-md-9 col-sm-9 col-xs-9 align-center text-left">
-                        <p class="tagline"> Wow.
+              </mat-sidenav-content>
+        </mat-sidenav-container>
+  </div>
+
+<!-- <div class="container-fluid p-0 m-0">
+    <div class="row">
+
+        <mat-sidenav-container>
+            <mat-sidenav opened="true" #sidenav position="end" mode="side">
+                <div class="side-left col-md-4 order-md-1 text-right">
+                    <div class="" style="height: 80%;">
+                        <header>
+                            <h3 class="title">GOT Weather</h3>
+                            <p class="subtitle">Just a simple weather search, powered by Game of Thrones</p>
+                        </header>
+                        <div class="center">
+                            <mat-form-field class="input-field d-block">
+                                <mat-label>City</mat-label>
+                                <input matInput class="form-control" required [(ngModel)]="city" name="city">
+                            </mat-form-field>
+                            <mat-form-field class="input-field d-block">
+                                <mat-label>Country Code</mat-label>
+                                <input matInput class="form-control" required [(ngModel)]="countryCode" name="countryCode">
+                            </mat-form-field>
+                            <button mat-raised-button color="primary" (click)="send()" class="btn btn-default btn-block">Search</button>
+                        </div>
+                    </div>
+                    <div style="height: 20%;">
+                        <footer class="" style="display: inline-flex; padding-right: 0;">
+                            <ul class="list-group list-group-horizontal text-right">
+                                <li class="list-group-item"><a href="https://twitter.com/CocoonProfesor">Twitter</a></li>
+                                <li class="list-group-item"><a href="https://github.com/nicolascomaschi">GitHub</a></li>
+                                <li class="list-group-item"><a href="https://www.instagram.com/nicolas_comaschi">Instagram</a></li>
+                            </ul>
+                        </footer>
+                    </div>
+                </div>
+            </mat-sidenav>
+            <mat-sidenav-content>
+                <div class="side-right col-md-8 order-md-2 h-100 d-inline-block p-0" style="position: relative;">
+                    <div class="image-right" style="background: transparent url({{img}}); ">
+                        <button mat-button (click)="sidenav.toggle()">sidenav.toggle()</button>
+                    </div>
+                    <div *ngIf="weather" class="center align-center text-left">
+                        <p> Wow.
                             <span>
-                                <h3 class="wellcome-text">{{ weather.main.temp }}° C</h3>
+                                <h3>{{ weather.main.temp }}° C</h3>
                             </span>
                         </p>
-                        <p class="tagline pb-0"> It's like </p>
-                        <div id="countdown" class="pt-0">
-                            <span class="days">{{location}}</span>
+                        <p> It's like </p>
+                        <div>
+                            <span>{{location}}</span>
                         </div>
-                        <span class="small-hr pb-2"></span>
-                        <p class="tagline"> out there </p>
-                        <p class="tagline"> {{ weather.weather[0].description }} </p>
+                        <p> out there </p>
+                        <p> {{ weather.weather[0].description }} </p>
                         <p>Humidity: {{ weather.main.humidity }}. Max: {{ weather.main.temp_max }}.
                             Min: {{ weather.main.temp_min }}</p>
                     </div>
                 </div>
-                <div class="trans-overlay-dark"></div>
-            </div>
-        </div>
+              </mat-sidenav-content>
+        </mat-sidenav-container>
     </div>
-</div> -->
+  </div> -->

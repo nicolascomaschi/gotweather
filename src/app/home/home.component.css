@@ -5,6 +5,17 @@
 .image-right{
   background-size: cover !important; 
   background-position: center !important;
+  max-width: 100%; 
+}
+
+.image-right:before {
+	content:'';
+	position: absolute;
+        top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: rgba(0,0,0,0.4);
 }
 
 .center{
@@ -15,8 +26,36 @@
   transform: translate(-80%, -50%);
 }
 
+.div-center {
+  height: 50%;
+}
+
+.div-top {
+  height: 20%;
+}
+
+.div-bottom {
+  height: 30%;
+}
+
 header {
   padding: 3em 3em 1.75em 2.25em;
+}
+
+footer {
+  padding: 3em 3em 1.75em 2.25em;
+}
+
+li, a {
+  font-size: small;
+  color: #aaa;
+  border: 0;
+}
+
+li, a:hover {
+  font-size: small;
+  color: #aaaa;
+  border: 0;
 }
 
 .title {
@@ -29,6 +68,10 @@ header {
 
 .input-field {
   text-align: right;
+}
+
+.side-left {
+  padding: 2em 3em 0.5em 3em;
 }
 
 @media only screen and (max-width: 1920px) {
@@ -55,10 +98,10 @@ header {
 }
 @media only screen and (max-width: 766px) {
   .side-left{
-    height: 25% !important;
+    height: 100% !important;
   }
   .side-right{
-    height: 75% !important;
+    height: 100% !important;
   }
 }
 @media only screen and (max-width: 615px) {

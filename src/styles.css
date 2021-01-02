@@ -6,4 +6,12 @@ html, body, div {
   font-size: 100%;
   font: inherit;
   height: 100%;
+  overflow: hidden;
+  font-family: 'Roboto', sans-serif;;
 }
+
+.snackBar{
+  width: 6em !important;
+  height: 5em !important;
+}
+
