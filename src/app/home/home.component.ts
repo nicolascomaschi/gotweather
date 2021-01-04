@@ -5,6 +5,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { WeatherService } from '../services/weather.service';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { BreakpointObserver } from "@angular/cdk/layout";
 
 @Component({
   selector: 'app-home',
@@ -31,7 +32,8 @@ export class HomeComponent implements OnInit {
 
   constructor( 
     private api: WeatherService, 
-    private _snackBar: MatSnackBar ) { 
+    private _snackBar: MatSnackBar,
+    private breakpointObserver: BreakpointObserver ) { 
     
     this.mode = '';
     this.showToggle = '';
@@ -65,7 +67,7 @@ export class HomeComponent implements OnInit {
     return this.screenWidth$.asObservable();
   }
 
-  send(){
+  send(nav: MatSidenav){
     this.city.replace(/ /g,"+");
     if(this.city == '' && this.countryCode == ''){
       this._snackBar.open("Enter valid values", "Accept", {
@@ -74,14 +76,12 @@ export class HomeComponent implements OnInit {
       }); 
     }
     else {
-      this.getScreenWidth().subscribe(width => {
-        if (width < 640) {
-         this.showToggle = 'hidden';
-         this.mode = 'over';
-         this.openSidenav = false;
-         console.log("true");
-       }
-      });
+      const isSmallScreen = this.breakpointObserver.isMatched(
+        "(max-width: 599px)"
+      );
+      if (isSmallScreen) {
+        nav.toggle();
+      }
       this.api.getWeather(this.city, this.countryCode).subscribe( 
         response => { 
         this.weather = response;
@@ -163,9 +163,9 @@ export class HomeComponent implements OnInit {
         },
         error => {
           this.errors = error;
-          this.img = 'assets/images/ulthos.png';
+          this.img = 'assets/images/ulthos.jpeg';
           this.weather = null;
-        })
+      })
     }
     this.city = '';
     this.countryCode = '';
