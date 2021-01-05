@@ -69,6 +69,7 @@ export class HomeComponent implements OnInit {
 
   send(nav: MatSidenav){
     this.city.replace(/ /g,"+");
+    this.weather = null;
     if(this.city == '' && this.countryCode == ''){
       this._snackBar.open("Enter valid values", "Accept", {
         duration: 2000,
@@ -101,7 +102,8 @@ export class HomeComponent implements OnInit {
         (this.weather.weather[0].description === "clear sky" || 
         this.weather.weather[0].description === "few clouds" ||
         this.weather.weather[0].description === "scattered clouds" ||
-        this.weather.weather[0].description === "broken clouds")){
+        this.weather.weather[0].description === "broken clouds" ||
+        this.weather.weather[0].description === "overcast clouds")){
           this.img = 'assets/images/theeyrie.jpeg'
           this.location = 'The Eyrie';
         }
@@ -131,7 +133,8 @@ export class HomeComponent implements OnInit {
         (this.weather.weather[0].description === "clear sky" || 
         this.weather.weather[0].description === "few clouds" ||
         this.weather.weather[0].description === "scattered clouds" ||
-        this.weather.weather[0].description === "broken clouds")){
+        this.weather.weather[0].description === "broken clouds"||
+        this.weather.weather[0].description === "overcast clouds")){
           this.img = 'assets/images/astapor.jpeg'
           this.location = 'Astapor';
         }
@@ -139,7 +142,8 @@ export class HomeComponent implements OnInit {
         (this.weather.weather[0].description === "clear sky" || 
         this.weather.weather[0].description === "few clouds" ||
         this.weather.weather[0].description === "scattered clouds" ||
-        this.weather.weather[0].description === "broken clouds")){
+        this.weather.weather[0].description === "broken clouds"||
+        this.weather.weather[0].description === "overcast clouds")){
           this.img = 'assets/images/oldtown.jpeg'
           this.location = 'Oldtown';
         }

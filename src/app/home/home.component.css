@@ -11,7 +11,7 @@
 .image-right:before {
 	content:'';
 	position: absolute;
-        top: 0;
+  top: 0;
 	bottom: 0;
 	left: 0;
 	right: 0;
@@ -74,6 +74,15 @@ li, a:hover {
   padding: 2em 3em 0.5em 3em;
 }
 
+.location-text {
+  font-size: 5em; 
+  font-family: 'Lobster', cursive;
+}
+
+.description-text {
+  font-size: 2em;
+}
+
 @media only screen and (max-width: 1920px) {
   .center {
     width: 60%;
@@ -93,8 +102,9 @@ li, a:hover {
 @media only screen and (max-width: 870px) {
   .title, .subtitle {
     font-size: medium;
-    text-align: center;
   }
+
+
 }
 @media only screen and (max-width: 766px) {
   .side-left{
@@ -103,6 +113,23 @@ li, a:hover {
   .side-right{
     height: 100% !important;
   }
+
+  .location-text {
+    font-size: 3em;
+    font-stretch: condensed; 
+    font-family: 'Lobster', cursive;
+    padding: 0;
+  }
+
+  .description-text {
+    font-size: 1.5em;
+    font-stretch: condensed; 
+    padding: 0;
+  }
+
+  header {
+    padding: 0.5em 0 0 4.5em;
+  }
 }
 @media only screen and (max-width: 615px) {
 
@@ -110,6 +137,8 @@ li, a:hover {
 @media only screen and (max-width: 438px) {
 
 }
-@media only screen and (max-width: 414px) {
-
+@media only screen and (max-height: 500px) {
+  .title, .subtitle {
+    display: none;
+  }
 } 

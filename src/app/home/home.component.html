@@ -22,7 +22,7 @@
                             <button mat-raised-button color="primary" (click)="send(sidenav)" class="btn btn-default btn-block">Search</button>
                         </div>
                     </div>
-                    <div style="height: 20%;">
+                    <div class="footer" style="height: 20%;">
                         <footer class="" style="display: inline-flex; padding-right: 0;">
                             <ul class="list-group list-group-horizontal text-right">
                                 <li class="list-group-item"><a href="https://twitter.com/CocoonProfesor">Twitter</a></li>
@@ -46,15 +46,15 @@
                             <div class="row">
                               <div class="col-12 pt-5" style="height: 20%;">
                                 <p style="font-size: 1em;"> Wow.</p>
-                                <h3 style="font-size: 2em;">{{ weather.main.temp }}° C</h3>
+                                <h3 class="description-text">{{ weather.main.temp }}° C</h3>
                               </div>
                               <div class="col-12 pt-5 text-center" style="height: 50%;">
                                 <p style="font-size: 2em;"> It's like </p>
-                                <span style="font-size: 5em; font-family: 'Lobster', cursive;">{{location}}</span>
+                                <span class="location-text">{{location}}</span>
                                 <p style="font-size: 2em;"> out there </p>
                               </div>
                               <div class="col-12 pt-5 text-right" style="height: 30%;">
-                                <p style="font-size: 2em;"> {{ weather.weather[0].description }} </p>
+                                <p class="description-text"> {{ weather.weather[0].description }} </p>
                                 <p style="font-size: 1em;">Humidity: {{ weather.main.humidity }}. Max: {{ weather.main.temp_max }}.
                                     Min: {{ weather.main.temp_min }}</p>
                               </div>
